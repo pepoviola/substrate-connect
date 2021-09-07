@@ -6,6 +6,7 @@ import { ExtensionProvider } from './ExtensionProvider/ExtensionProvider.js';
 import westend from './specs/westend.json';
 import kusama from './specs/kusama.json';
 import polkadot from './specs/polkadot.json';
+import rococo from "./specs/rococo-local.json";
 
 interface ChainInfo {
   name: string
@@ -46,7 +47,8 @@ export class Detector {
   #chainSpecs: Record<string, unknown> = {
     'polkadot': polkadot,
     'kusama': kusama,
-    'westend': westend
+    'westend': westend,
+    'rococo': rococo
   }
   #name: string;
   #isExtension: boolean;

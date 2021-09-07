@@ -21,8 +21,8 @@ interface ChainSpec {
   name: string;
   icon?: string;
   status: NetworkStatus;
-  isKnown: boolean;
-  chainspecPath: string;
+  isKnown?: boolean;
+  chainspecPath?: string;
 }
 export interface Network extends ChainSpec {
   chain: smoldot.SmoldotChain;

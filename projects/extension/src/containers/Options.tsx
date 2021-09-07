@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/core'
 import Box from '@material-ui/core/Box'
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { light, Logo, NetworkTab } from '../components/';
 import GlobalFonts from '../fonts/fonts';
 import { Background } from '../background/';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, createTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {
@@ -74,7 +74,7 @@ const TabPanel = (props: TabPanelProps) => {
 }
 
 const Options: React.FunctionComponent = () => {
-  const appliedTheme = createMuiTheme(light);
+  const appliedTheme = createTheme(light);
   const [value, setValue] = React.useState<number>(0);
   const [networks, setNetworks] = React.useState<Network[]>([{} as Network]);
   const [notifications, setNotifications] = React.useState<boolean>(false);
@@ -93,6 +93,7 @@ const Options: React.FunctionComponent = () => {
         if (!check) nets.push(network)
       })
       setNetworks(nets);
+      console.log("bg", bg.manager.getState())
     });
   }, []);
 
@@ -131,7 +132,7 @@ const Options: React.FunctionComponent = () => {
           <ClientSearch />
         */}
         {networks && networks.map((network: Network, i:number) => 
-          <NetworkTab key={i} name={network.name} />
+          <NetworkTab key={i} name={network.name} chain={network.chain} status={network.status} />
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>

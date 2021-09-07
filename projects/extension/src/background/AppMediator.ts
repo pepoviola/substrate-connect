@@ -17,13 +17,15 @@ import { SmoldotChain, HealthChecker, SmoldotHealth } from '@substrate/smoldot-l
 import westend from '../../public/assets/westend.json';
 import kusama from '../../public/assets/kusama.json';
 import polkadot from '../../public/assets/polkadot.json';
+import rococo from '../../public/assets/rococo-local.json';
 
 type RelayType = Map<string, string>;
 
 export const relayChains: RelayType = new Map<string, string>([
   ["polkadot", JSON.stringify(polkadot)],
   ["kusama", JSON.stringify(kusama)],
-  ["westend", JSON.stringify(westend)]
+  ["westend", JSON.stringify(westend)],
+  ["rococo", JSON.stringify(rococo)]
 ])
 
 /**
@@ -194,7 +196,6 @@ export class AppMediator extends (EventEmitter as { new(): StateEmitter }) {
       this.#pendingRequests.push(msg.payload);
       return;
     }
-
     return this.#healthChecker?.sendJsonRpc(msg.payload);
   }
 
