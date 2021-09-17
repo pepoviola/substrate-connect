@@ -42,11 +42,12 @@ interface StateSubscription extends SubscriptionHandler {
 }
 
 interface HealthResponse {
+  //indicates whether GrandPa wrap syncing is done 
   isSyncing: boolean;
+  //indicates the amount of connected peers 
   peers: number;
   shouldHavePeers: boolean;
 }
-
 
 const ANGLICISMS: { [index: string]: string } = {
   chain_finalisedHead: 'chain_finalizedHead',
