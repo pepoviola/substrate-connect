@@ -57,6 +57,10 @@ chrome.runtime.onConnect.addListener(port => {
   manager.addApp(port);
 });
 
+chrome.runtime.onSuspend.addListener(() => {
+  manager.disconnectAll();
+});
+
 chrome.storage.sync.get(['notifications'], (result) => {
   if (isEmpty(result)) {
     // Setup default settings
