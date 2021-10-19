@@ -1,13 +1,12 @@
 <html>
 <body>
-  <div id="root"></div>
   <style>
-    body {
+    .root {
       margin: 0;
+    }
+    body {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       font-size: 14px;
-    }
-    #messages {
       background-color: black;
       margin: 0 auto;
       color: #18ffb2;
@@ -42,7 +41,7 @@
         animation-timing-function: linear;
     }
   </style>
-  <section id="messages"></section>
-  <script type="module" src="./src/index.ts"></script>
+  <div id="root"></div>
+  <script type="module" src="./src/index.tsx"></script>
 </body>
 </html>
