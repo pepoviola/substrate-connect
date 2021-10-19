@@ -21,7 +21,9 @@
     "projects/multiple-network-demo",
     "projects/parachain-demo",
     "projects/burnr",
-    "projects/landing-page"
+    "projects/landing-page",
+    "bundlers/parcel-demo",
+    "bundlers/webpack-demo"
   ],
   "scripts": {
     "downloadSpecs": "node bin/downloadSpecs.js",
@@ -40,6 +42,8 @@
     "dev:extension": "yarn workspace @substrate/extension run dev",
     "deploy:gh-pages:smoldot-browser-demo": "yarn workspace @substrate/smoldot-browser-demo run deploy:gh-pages",
     "deploy:ipfs:smoldot-browser-demo": "yarn workspace @substrate/smoldot-browser-demo run deploy:ipfs",
+    "bundle:parcel": "yarn workspace @substrate/parcel-demo run dev",
+    "bundle:webpack": "yarn workspace @substrate/webpack-demo run dev",
     "deploy": "./deploy.sh",
     "postinstall": "husky install",
     "connect-tester": "yarn workspace @substrate/extension-provider run build && yarn workspace @substrate/connect run build && yarn run dev:smoldot-browser-demo"
