@@ -69,6 +69,17 @@ chrome.storage.sync.get(["notifications"], (result) => {
   }
 })
 
+// setup storage for logger of extension - ensuring that its not empty
+chrome.storage.local.get(["loggerPad"], (result) => {
+  if (isEmpty(result)) {
+    // Setup default settings
+    chrome.storage.local.set({ loggerPad: [] }, () => {
+      if (chrome.runtime.lastError) {
+        console.error(chrome.runtime.lastError)
+      }
+    })
+  }
+})
 // TODO (nik): once extension is on chrome/ff stores we need to take advantage
 // of the onBrowserUpdateAvailable and onUpdateAvailable lifecycle event
 // NOTE: onSuspend could be used to cleanup things but async actions are not guaranteed to complete :(

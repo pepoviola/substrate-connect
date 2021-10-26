@@ -1,4 +1,5 @@
 import { debug } from "../utils/debug"
+import { initLogger } from "../utils/logger"
 
 const pkg_name = process.env.PKG_NAME as string
 const version = process.env.PKG_VERSION as string
@@ -13,6 +14,7 @@ export const spanId = "substrateExtension"
  */
 export class ExtensionPageInjector {
   constructor() {
+    initLogger()
     debug("SETTING UP INJECTOR")
     // inject as soon as the dom is available
     window.document.addEventListener("readystatechange", () => {

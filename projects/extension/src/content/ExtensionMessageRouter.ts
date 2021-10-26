@@ -6,6 +6,7 @@ import {
   extension,
 } from "@substrate/connect-extension-protocol"
 import { debug } from "../utils/debug"
+import { LogLevel, scLogger, Source } from "../utils/logger"
 
 const CONTENT_SCRIPT_ORIGIN = "content-script"
 const EXTENSION_PROVIDER_ORIGIN = "extension-provider"
@@ -47,11 +48,19 @@ export class ExtensionMessageRouter {
 
   #establishNewConnection = (message: ProviderMessage): void => {
     const data = message.data
+    const chainName = data.chainName
     const port = chrome.runtime.connect({
       name: `${data.appName}::${data.chainName}`,
     })
+
     debug(`CONNECTED ${data.chainName} PORT`, port)
-    const chainName = data.chainName
+    scLogger(
+      LogLevel.DEBUG,
+      Source.EXT_MSG_ROUTER,
+      13,
+      data.chainName,
+      `CONNECTED ${data.chainName} PORT`,
+    )
 
     // forward any messages: extension -> page
     port.onMessage.addListener((data): void => {
@@ -67,6 +76,14 @@ export class ExtensionMessageRouter {
 
     this.#ports[data.chainName] = port
     debug(`CONNECTED TO ${data.chainName} PORT`, data.message)
+    scLogger(
+      LogLevel.DEBUG,
+      Source.EXT_MSG_ROUTER,
+      13,
+      data.chainName,
+      `CONNECTED TO ${data.chainName} PORT`,
+      data.message,
+    )
   }
 
   #forwardRpcMessage = (message: ProviderMessage): void => {
@@ -81,6 +98,14 @@ export class ExtensionMessageRouter {
     }
 
     debug(`SENDING RPC MESSAGE TO ${data.chainName} PORT`, data.message)
+    scLogger(
+      LogLevel.DEBUG,
+      Source.EXT_MSG_ROUTER,
+      13,
+      data.chainName,
+      `SENDING RPC MESSAGE TO ${data.chainName} PORT`,
+      data.message,
+    )
     port.postMessage(data.message)
   }
 
@@ -98,6 +123,14 @@ export class ExtensionMessageRouter {
 
     port.disconnect()
     debug(`DISCONNECTED ${data.chainName} PORT`, port)
+    scLogger(
+      LogLevel.DEBUG,
+      Source.EXT_MSG_ROUTER,
+      13,
+      data.chainName,
+      `DISCONNECTED ${data.chainName} PORT`,
+      port,
+    )
     delete this.#ports[data.chainName]
     return
   }
@@ -109,6 +142,14 @@ export class ExtensionMessageRouter {
     }
 
     debug(`RECEIVED MESSAGE FROM ${EXTENSION_PROVIDER_ORIGIN}`, data)
+    scLogger(
+      LogLevel.DEBUG,
+      Source.EXT_MSG_ROUTER,
+      13,
+      data.chainName,
+      `RECEIVED MESSAGE FROM ${EXTENSION_PROVIDER_ORIGIN}`,
+      data,
+    )
 
     if (!data.action) {
       return console.warn("Malformed message - missing action", message)
