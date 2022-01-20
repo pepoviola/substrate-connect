@@ -26,10 +26,6 @@ jobs:
           curl -L -O https://github.com/paritytech/polkadot/releases/download/untagged-07147b69b677a4195183/polkadot
           chmod +x polkadot
 
-      - name: Add to PATH
-        run: |
-          export PATH=$(pwd):PATH
-
       # - name: check podman
       #   run: |
       #     echo "podman version $(podman --version)"
@@ -38,5 +34,6 @@ jobs:
 
       - name: Run test
         run: |
+          export PATH=$(pwd):$PATH
           echo "running on $(pwd)"
           DEBUG=zombie* ./zombienet-linux -p native test ./zombienet-tests/0001-parachains-smoke-test.feature
