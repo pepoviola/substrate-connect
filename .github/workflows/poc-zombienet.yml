@@ -1,0 +1,26 @@
+name: PoC zombienet CI
+
+on:
+  push:
+    branches: [ poc-zombienet ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Get zombienet
+        run: |
+          curl -L -O https://github.com/paritytech/zombienet/releases/download/v1.2.7/zombienet-linux
+          chmox +x zombienet-linux
+
+      # Runs a set of commands using the runners shell
+      - name: Run test
+        run: ./zombienet-linux -p podmman test .zombienet-test/0001-parachains-smoke-test.feature
