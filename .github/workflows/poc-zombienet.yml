@@ -24,7 +24,8 @@ jobs:
       - name: check podman
         run: |
           echo "podman version $(podman --version)"
-          podman info --debug
+          podman info
+          podman run --rm alpine ls
 
       # Runs a set of commands using the runners shell
       - name: Run test
