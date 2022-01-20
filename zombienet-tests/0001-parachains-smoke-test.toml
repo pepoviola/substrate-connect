@@ -5,7 +5,7 @@ timeout = 1000
 [relaychain]
 default_image = "parity/polkadot:latest"
 chain = "rococo-local"
-default_command = "/home/runner/work/substrate-connect/substrate-connect/polkdot"
+default_command = "/home/runner/work/substrate-connect/substrate-connect/polkadot"
 
   [[relaychain.nodes]]
   name = "alice"
