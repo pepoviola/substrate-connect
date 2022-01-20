@@ -21,6 +21,11 @@ jobs:
           curl -L -O https://github.com/paritytech/zombienet/releases/download/v1.2.7/zombienet-linux
           chmod +x zombienet-linux
 
+      - name: check podman
+        run: |
+          echo "podman version $(podman --version)"
+          podman info --debug
+
       # Runs a set of commands using the runners shell
       - name: Run test
         run: |
