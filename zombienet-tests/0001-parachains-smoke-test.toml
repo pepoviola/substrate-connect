@@ -3,7 +3,7 @@ timeout = 1000
 #provider = "Podman"
 
 [relaychain]
-default_image = "parity/polkadot:latest"
+default_image = "docker.io/paritypr/synth-wave:4564-0.9.13-d32f33e0-e8c9dbd4"
 chain = "rococo-local"
 
   [[relaychain.nodes]]
@@ -20,7 +20,7 @@ addToGenesis = true
 
   [parachains.collator]
   name = "collator01"
-  image = "parity/colander:latest"
+  image = "docker.io/paritypr/colander:4564-d32f33e0"
   command = "adder-collator"
 
 [types.Header]
