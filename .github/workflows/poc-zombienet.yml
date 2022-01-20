@@ -21,14 +21,22 @@ jobs:
           curl -L -O https://github.com/paritytech/zombienet/releases/download/v1.2.7/zombienet-linux
           chmod +x zombienet-linux
 
-      - name: check podman
+      - name: Get polkadot
         run: |
-          echo "podman version $(podman --version)"
-          podman info
-          podman run --rm alpine ls
+          curl -L -O https://github.com/paritytech/polkadot/releases/download/untagged-07147b69b677a4195183/polkadot
+          chmod +x polkadot
 
-      # Runs a set of commands using the runners shell
+      - name: Add to PATH
+        run: |
+          export PATH=$(pwd):PATH
+
+      # - name: check podman
+      #   run: |
+      #     echo "podman version $(podman --version)"
+      #     podman info
+      #     podman run --rm alpine ls
+
       - name: Run test
         run: |
           echo "running on $(pwd)"
-          DEBUG=zombie* ./zombienet-linux -p podman test ./zombienet-tests/0001-parachains-smoke-test.feature
+          DEBUG=zombie* ./zombienet-linux -p native test ./zombienet-tests/0001-parachains-smoke-test.feature

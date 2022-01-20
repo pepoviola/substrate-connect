@@ -14,14 +14,14 @@ chain = "rococo-local"
   name = "bob"
   extra_args = [ "--bob" ]
 
-[[parachains]]
-id = 100
-addToGenesis = true
+# [[parachains]]
+# id = 100
+# addToGenesis = true
 
-  [parachains.collator]
-  name = "collator01"
-  image = "docker.io/paritypr/colander:4564-d32f33e0"
-  command = "adder-collator"
+#   [parachains.collator]
+#   name = "collator01"
+#   image = "docker.io/paritypr/colander:4564-d32f33e0"
+#   command = "adder-collator"
 
 [types.Header]
 number = "u64"
