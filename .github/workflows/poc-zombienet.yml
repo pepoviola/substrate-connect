@@ -24,5 +24,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run test
         run: |
-        ls
+        echo "running on $(pwd)"
+        echo "content $(ls)"
         ./zombienet-linux -p podman test ./.zombienet-test/0001-parachains-smoke-test.feature
