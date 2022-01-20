@@ -25,4 +25,4 @@ jobs:
       - name: Run test
         run: |
           echo "running on $(pwd)"
-          ./zombienet-linux -p podman test ./zombienet-test/0001-parachains-smoke-test.feature
+          ./zombienet-linux -p podman test ./zombienet-tests/0001-parachains-smoke-test.feature
