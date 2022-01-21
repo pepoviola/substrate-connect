@@ -23,7 +23,7 @@ jobs:
 
       - name: Get polkadot
         run: |
-          curl -L -O https://github.com/paritytech/polkadot/releases/download/untagged-07147b69b677a4195183/polkadot
+          curl -L -O https://github.com/paritytech/polkadot/releases/download/v0.9.15-1/polkadot
           chmod +x polkadot
           ./polkadot --help
 
@@ -33,8 +33,8 @@ jobs:
       #     podman info
       #     podman run --rm alpine ls
 
-      # - name: Run test
-      #   run: |
-      #     export PATH=$(pwd):$PATH
-      #     echo "running on $(pwd)"
-      #     DEBUG=zombie* ./zombienet-linux -p native test ./zombienet-tests/0001-parachains-smoke-test.feature
+      - name: Run test
+        run: |
+          export PATH=$(pwd):$PATH
+          echo "running on $(pwd)"
+          DEBUG=zombie* ./zombienet-linux -p native test ./zombienet-tests/0001-parachains-smoke-test.feature
