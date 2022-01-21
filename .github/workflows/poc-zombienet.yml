@@ -24,7 +24,6 @@ jobs:
         run: |
           curl -L -O https://github.com/paritytech/polkadot/releases/download/v0.9.15-1/polkadot
           chmod +x polkadot
-          ./polkadot --help
 
       # - name: check podman
       #   run: |
@@ -36,4 +35,4 @@ jobs:
           export PATH=$(pwd):$PATH
           echo "running on $(pwd)"
           echo $PATH
-          DEBUG=zombie* ./zombienet-linux -p native test ./.zombienet-tests/0001-smoke-test.feature
+          ./zombienet-linux -p native test ./.zombienet-tests/0001-smoke-test.feature
