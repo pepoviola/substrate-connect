@@ -37,4 +37,5 @@ jobs:
         run: |
           export PATH=$(pwd):$PATH
           echo "running on $(pwd)"
+          echo $PATH
           DEBUG=zombie* ./zombienet-linux -p native test ./zombienet-tests/0001-parachains-smoke-test.feature
