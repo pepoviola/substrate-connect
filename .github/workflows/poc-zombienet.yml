@@ -15,7 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
       - name: Get zombienet
         run: |
           curl -L -O https://github.com/paritytech/zombienet/releases/download/v1.2.7/zombienet-linux
@@ -31,11 +30,10 @@ jobs:
       #   run: |
       #     echo "podman version $(podman --version)"
       #     podman info
-      #     podman run --rm alpine ls
 
       - name: Run test
         run: |
           export PATH=$(pwd):$PATH
           echo "running on $(pwd)"
           echo $PATH
-          DEBUG=zombie* ./zombienet-linux -p native test ./zombienet-tests/0001-parachains-smoke-test.feature
+          DEBUG=zombie* ./zombienet-linux -p native test ./.zombienet-tests/0001-smoke-test.feature

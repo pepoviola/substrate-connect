@@ -1,5 +1,5 @@
-Description: Parachain Smoke Test
-Network: ./0001-parachains-smoke-test.toml
+Description: Smoke Test
+Network: ./0001-smoke-test.toml
 Creds: config
 
 
